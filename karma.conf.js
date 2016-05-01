@@ -54,7 +54,7 @@ module.exports = function karma(config) {
           file: 'lcov.info'
         },
         {
-          type: 'text'
+          type: 'text-summary'
         }
       ]
     }
