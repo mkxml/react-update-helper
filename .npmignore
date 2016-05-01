@@ -1,0 +1,8 @@
+tests.webpack.js
+karma.conf.js
+.editorconfig
+.babelrc
+lib/__tests__
+.gitignore
+lib/.eslintrc.json
+coverage
