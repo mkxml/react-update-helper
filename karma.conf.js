@@ -11,12 +11,12 @@ module.exports = function karma(config) {
       'karma-sourcemap-loader',
       'karma-webpack',
       'karma-coverage',
-      'karma-mocha-reporter'
+      'karma-nyan-reporter'
     ],
     preprocessors: {
       'tests.webpack.js': ['webpack', 'sourcemap']
     },
-    reporters: ['mocha', 'coverage'],
+    reporters: ['nyan', 'coverage'],
     webpack: {
       devtool: 'inline-source-map',
       module: {
