@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/index.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-reportChanges">reportChanges</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-asPureComponent">asPureComponent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-shouldUpdate">shouldUpdate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getComponentName">getComponentName</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getPropList">getPropList</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Change">Change</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://facebook.github.io/react/docs/component-api.html">React.Component</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
+import { is } from &apos;immutable&apos;;
+import { getComponentName } from &apos;./util&apos;;
+import keys from &apos;lodash.keys&apos;;
+
+/**
+ * @external {React.Component} https://facebook.github.io/react/docs/component-api.html
+ */
+
+/**
+ * Simply checks if a component update is needed
+ * @public
+ * @param {object} context - the component context, containing the current props and state values
+ * @param {object} nProps - the next props in the update process
+ * @param {object} nState - the next state in the update process
+ * @return {boolean} - true if should update the component else false
+ * @since 1.0.0
+ */
+export function shouldUpdate({ props, state }, nProps, nState) {
+  const propsKeys = keys(props || {});
+  const stateKeys = keys(state || {});
+  const nPropsKeys = keys(nProps || {});
+  const nStateKeys = keys(nState || {});
+  if (propsKeys.length !== nPropsKeys.length || stateKeys.length !== nStateKeys.length) {
+    return true;
+  }
+  for (let i = 0, l = propsKeys.length; i &lt; l; i++) {
+    const key = propsKeys[i];
+    if (!nProps.hasOwnProperty(key)) {
+      return true;
+    }
+    if (!is(props[key], nProps[key])) {
+      return true;
+    }
+  }
+  for (let i = 0, l = stateKeys.length; i &lt; l; i++) {
+    const key = stateKeys[i];
+    if (!nState.hasOwnProperty(key)) {
+      return true;
+    }
+    if (!is(state[key], nState[key])) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * Encapsulates the shouldUpdate logic as a high order function
+ * @public
+ * @example
+ * // Usage as a high order component
+ * class MyComponent extends React.Component {
+ *  render() { return &lt;p&gt;Hello World!&lt;/p&gt;; }
+ * }
+ * withPureRender(MyComponent); // Your enhanced component
+ * @example
+ * // Usage as a component decorator
+ * // ES7 decorator @withPureRender
+ * class MyComponent extends React.Component {
+ *  render() { return &lt;p&gt;Hello World!&lt;/p&gt;; }
+ * }
+ * // You are all set!
+ * @param {React.Component} PureComponent - the component to be enhanced
+ * @return {React.Component} - the enhanced component
+ * @since 1.0.0
+ */
+export function asPureComponent(PureComponent) {
+  return class extends React.Component {
+
+    static displayName = getComponentName(PureComponent);
+
+    static propTypes = PureComponent.propTypes;
+
+    shouldComponentUpdate(nextProps, nextState) {
+      if (process.env.NODE_ENV !== &apos;production&apos;) {
+        require(&apos;./debug&apos;).reportChanges(this, nextProps, nextState);
+      }
+      return shouldUpdate(this, nextProps, nextState);
+    }
+
+    render() {
+      return &lt;PureComponent {...this.props} /&gt;;
+    }
+  };
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
