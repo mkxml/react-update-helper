@@ -1,0 +1,20 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "describe": true,
+    "it": true,
+    "expect": true,
+    "sinon": true
+  },
+  "extends": "airbnb",
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "new-cap": [0]
+  }
+}
