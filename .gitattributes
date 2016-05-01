@@ -1,0 +1,6 @@
+# Use only Unix line feeds (LF)
+*.txt    text eol=lf
+*.js     text eol=lf
+*.json   text eol=lf
+*.md     text eol=lf
+*.yml    text eol=lf
