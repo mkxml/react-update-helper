@@ -1,7 +1,7 @@
 import React from 'react';
-import { asPureComponent } from '../../src/index';
+import { withPureRender } from '../../src/index';
 
-@asPureComponent
+@withPureRender
 class DecoratorComponent extends React.Component {
   constructor() {
     super();

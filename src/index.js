@@ -65,7 +65,7 @@ function shouldUpdate({ props, state }, nProps, nState) {
  * @return {React.Component} - the enhanced component
  * @since 1.0.0
  */
-function asPureComponent(PureComponent) {
+function withPureRender(PureComponent) {
   return class extends React.Component {
 
     static displayName = getComponentName(PureComponent);
@@ -88,5 +88,5 @@ function asPureComponent(PureComponent) {
 // Exporting functions
 export default {
   shouldUpdate,
-  asPureComponent,
+  withPureRender,
 };
