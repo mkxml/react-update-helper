@@ -1,7 +1,7 @@
 {
   "name": "react-update-helper",
   "version": "1.0.0",
-  "description": "A helper to React's shouldComponentUpdate with debug and immutable support",
+  "description": "Precise React re-renders with debug and immutable support",
   "scripts": {
     "lint": "eslint karma.conf.js tests.webpack.js src __tests__",
     "test": "npm run lint && karma start karma.conf.js --single-run",
