@@ -1,11 +1,5 @@
 window.esdocSearchIndex = [
   [
-    "react-update-helper/src/index.js~aspurecomponent",
-    "function/index.html#static-function-asPureComponent",
-    "<span>asPureComponent</span> <span class=\"search-result-import-path\">react-update-helper/src/index.js</span>",
-    "function"
-  ],
-  [
     "react-update-helper/src/util.js~getcomponentname",
     "function/index.html#static-function-getComponentName",
     "<span>getComponentName</span> <span class=\"search-result-import-path\">react-update-helper/src/util.js</span>",
@@ -27,6 +21,12 @@ window.esdocSearchIndex = [
     "react-update-helper/src/index.js~shouldupdate",
     "function/index.html#static-function-shouldUpdate",
     "<span>shouldUpdate</span> <span class=\"search-result-import-path\">react-update-helper/src/index.js</span>",
+    "function"
+  ],
+  [
+    "react-update-helper/src/index.js~withpurerender",
+    "function/index.html#static-function-withPureRender",
+    "<span>withPureRender</span> <span class=\"search-result-import-path\">react-update-helper/src/index.js</span>",
     "function"
   ],
   [

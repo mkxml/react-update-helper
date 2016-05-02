@@ -33,8 +33,8 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-reportChanges">reportChanges</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-asPureComponent">asPureComponent</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-shouldUpdate">shouldUpdate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-withPureRender">withPureRender</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getComponentName">getComponentName</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getPropList">getPropList</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Change">Change</a></span></span></li>
@@ -59,13 +59,13 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="function/index.html#static-function-asPureComponent">asPureComponent</a></span></span><span data-ice="signature">(PureComponent: <span><a href="https://facebook.github.io/react/docs/component-api.html">React.Component</a></span>): <span><a href="https://facebook.github.io/react/docs/component-api.html">React.Component</a></span></span>
+           <span data-ice="name"><span><a href="function/index.html#static-function-shouldUpdate">shouldUpdate</a></span></span><span data-ice="signature">(context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, nProps: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, nState: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Encapsulates the shouldUpdate logic as a high order function</p>
+        <div data-ice="description"><p>Simply checks if a component update is needed</p>
 </div>
       </div>
     </td>
@@ -85,13 +85,13 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="function/index.html#static-function-shouldUpdate">shouldUpdate</a></span></span><span data-ice="signature">(context: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, nProps: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, nState: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+           <span data-ice="name"><span><a href="function/index.html#static-function-withPureRender">withPureRender</a></span></span><span data-ice="signature">(PureComponent: <span><a href="https://facebook.github.io/react/docs/component-api.html">React.Component</a></span>): <span><a href="https://facebook.github.io/react/docs/component-api.html">React.Component</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Simply checks if a component update is needed</p>
+        <div data-ice="description"><p>Encapsulates the shouldUpdate logic as a high order function</p>
 </div>
       </div>
     </td>
@@ -190,95 +190,6 @@
 <div data-ice="details"><h2 data-ice="title">Static Public </h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-function-asPureComponent">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">asPureComponent</span><span data-ice="signature">(PureComponent: <span><a href="https://facebook.github.io/react/docs/component-api.html">React.Component</a></span>): <span><a href="https://facebook.github.io/react/docs/component-api.html">React.Component</a></span></span>
-    <span class="right-info">
-      
-      <span class="since" data-ice="since">since 1.0.0</span>
-      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber68">source</a></span></span>
-    </span>
-  </h3>
-
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {asPureComponent} from &apos;<span><a href="file/src/index.js.html#lineNumber68">react-update-helper/src/index.js</a></span>&apos;</code></pre></div>
-  
-  
-  <div data-ice="description"><p>Encapsulates the shouldUpdate logic as a high order function</p>
-</div>
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">PureComponent</td>
-      <td data-ice="type"><span><a href="https://facebook.github.io/react/docs/component-api.html">React.Component</a></span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"><p>the component to be enhanced</p>
-</td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://facebook.github.io/react/docs/component-api.html">React.Component</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the enhanced component</p>
-</td>
-      </tr>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  <div data-ice="example">
-    <h4>Example:</h4>
-    
-  <div class="example-doc" data-ice="exampleDoc">
-      
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">// Usage as a high order component
-class MyComponent extends React.Component {
- render() { return &lt;p&gt;Hello World!&lt;/p&gt;; }
-}
-withPureRender(MyComponent); // Your enhanced component</code></pre>
-    </div>
-<div class="example-doc" data-ice="exampleDoc">
-      
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">// Usage as a component decorator
-// ES7 decorator @withPureRender
-class MyComponent extends React.Component {
- render() { return &lt;p&gt;Hello World!&lt;/p&gt;; }
-}
-// You are all set!</code></pre>
-    </div>
-</div>
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="static-function-shouldUpdate">
     <span class="access" data-ice="access">public</span>
     
@@ -355,6 +266,86 @@ class MyComponent extends React.Component {
   
 
   
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-withPureRender">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">withPureRender</span><span data-ice="signature">(PureComponent: <span><a href="https://facebook.github.io/react/docs/component-api.html">React.Component</a></span>): <span><a href="https://facebook.github.io/react/docs/component-api.html">React.Component</a></span></span>
+    <span class="right-info">
+      
+      <span class="since" data-ice="since">since 1.0.0</span>
+      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber61">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {withPureRender} from &apos;<span><a href="file/src/index.js.html#lineNumber61">react-update-helper/src/index.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Encapsulates the shouldUpdate logic as a high order function</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">PureComponent</td>
+      <td data-ice="type"><span><a href="https://facebook.github.io/react/docs/component-api.html">React.Component</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the component to be enhanced</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://facebook.github.io/react/docs/component-api.html">React.Component</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>the enhanced component</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">// Usage as a high order component
+class MyComponent extends React.Component {
+ render() { return &lt;p&gt;Hello World!&lt;/p&gt;; }
+}
+withPureRender(MyComponent); // Your enhanced component</code></pre>
+    </div>
+</div>
 
   
 

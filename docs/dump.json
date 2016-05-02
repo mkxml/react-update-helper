@@ -221,7 +221,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\nimport { is } from 'immutable';\nimport { getComponentName } from './util';\nimport keys from 'lodash.keys';\n\n/**\n * @external {React.Component} https://facebook.github.io/react/docs/component-api.html\n */\n\n/**\n * Simply checks if a component update is needed\n * @public\n * @param {object} context - the component context, containing the current props and state values\n * @param {object} nProps - the next props in the update process\n * @param {object} nState - the next state in the update process\n * @return {boolean} - true if should update the component else false\n * @since 1.0.0\n */\nexport function shouldUpdate({ props, state }, nProps, nState) {\n  const propsKeys = keys(props || {});\n  const stateKeys = keys(state || {});\n  const nPropsKeys = keys(nProps || {});\n  const nStateKeys = keys(nState || {});\n  if (propsKeys.length !== nPropsKeys.length || stateKeys.length !== nStateKeys.length) {\n    return true;\n  }\n  for (let i = 0, l = propsKeys.length; i < l; i++) {\n    const key = propsKeys[i];\n    if (!nProps.hasOwnProperty(key)) {\n      return true;\n    }\n    if (!is(props[key], nProps[key])) {\n      return true;\n    }\n  }\n  for (let i = 0, l = stateKeys.length; i < l; i++) {\n    const key = stateKeys[i];\n    if (!nState.hasOwnProperty(key)) {\n      return true;\n    }\n    if (!is(state[key], nState[key])) {\n      return true;\n    }\n  }\n  return false;\n}\n\n/**\n * Encapsulates the shouldUpdate logic as a high order function\n * @public\n * @example\n * // Usage as a high order component\n * class MyComponent extends React.Component {\n *  render() { return <p>Hello World!</p>; }\n * }\n * withPureRender(MyComponent); // Your enhanced component\n * @example\n * // Usage as a component decorator\n * // ES7 decorator @withPureRender\n * class MyComponent extends React.Component {\n *  render() { return <p>Hello World!</p>; }\n * }\n * // You are all set!\n * @param {React.Component} PureComponent - the component to be enhanced\n * @return {React.Component} - the enhanced component\n * @since 1.0.0\n */\nexport function asPureComponent(PureComponent) {\n  return class extends React.Component {\n\n    static displayName = getComponentName(PureComponent);\n\n    static propTypes = PureComponent.propTypes;\n\n    shouldComponentUpdate(nextProps, nextState) {\n      if (process.env.NODE_ENV !== 'production') {\n        require('./debug').reportChanges(this, nextProps, nextState);\n      }\n      return shouldUpdate(this, nextProps, nextState);\n    }\n\n    render() {\n      return <PureComponent {...this.props} />;\n    }\n  };\n}\n"
+    "content": "import React from 'react';\nimport { is } from 'immutable';\nimport { getComponentName } from './util';\nimport keys from 'lodash.keys';\n\n/**\n * @external {React.Component} https://facebook.github.io/react/docs/component-api.html\n */\n\n/**\n * Simply checks if a component update is needed\n * @public\n * @param {object} context - the component context, containing the current props and state values\n * @param {object} nProps - the next props in the update process\n * @param {object} nState - the next state in the update process\n * @return {boolean} - true if should update the component else false\n * @since 1.0.0\n */\nexport function shouldUpdate({ props, state }, nProps, nState) {\n  const propsKeys = keys(props || {});\n  const stateKeys = keys(state || {});\n  const nPropsKeys = keys(nProps || {});\n  const nStateKeys = keys(nState || {});\n  if (propsKeys.length !== nPropsKeys.length || stateKeys.length !== nStateKeys.length) {\n    return true;\n  }\n  for (let i = 0, l = propsKeys.length; i < l; i++) {\n    const key = propsKeys[i];\n    if (!nProps.hasOwnProperty(key)) {\n      return true;\n    }\n    if (!is(props[key], nProps[key])) {\n      return true;\n    }\n  }\n  for (let i = 0, l = stateKeys.length; i < l; i++) {\n    const key = stateKeys[i];\n    if (!nState.hasOwnProperty(key)) {\n      return true;\n    }\n    if (!is(state[key], nState[key])) {\n      return true;\n    }\n  }\n  return false;\n}\n\n/**\n * Encapsulates the shouldUpdate logic as a high order function\n * @public\n * @example\n * // Usage as a high order component\n * class MyComponent extends React.Component {\n *  render() { return <p>Hello World!</p>; }\n * }\n * withPureRender(MyComponent); // Your enhanced component\n * @param {React.Component} PureComponent - the component to be enhanced\n * @return {React.Component} - the enhanced component\n * @since 1.0.0\n */\nexport function withPureRender(PureComponent) {\n  return class extends React.Component {\n\n    static displayName = getComponentName(PureComponent);\n\n    static propTypes = PureComponent.propTypes;\n\n    shouldComponentUpdate(nextProps, nextState) {\n      if (process.env.NODE_ENV !== 'production') {\n        require('./debug').reportChanges(this, nextProps, nextState);\n      }\n      return shouldUpdate(this, nextProps, nextState);\n    }\n\n    render() {\n      return <PureComponent {...this.props} />;\n    }\n  };\n}\n"
   },
   {
     "__docId__": 6,
@@ -297,19 +297,18 @@
     "kind": "function",
     "static": true,
     "variation": null,
-    "name": "asPureComponent",
+    "name": "withPureRender",
     "memberof": "src/index.js",
-    "longname": "src/index.js~asPureComponent",
+    "longname": "src/index.js~withPureRender",
     "access": "public",
     "export": true,
     "importPath": "react-update-helper/src/index.js",
-    "importStyle": "{asPureComponent}",
+    "importStyle": "{withPureRender}",
     "description": "Encapsulates the shouldUpdate logic as a high order function",
     "examples": [
-      "// Usage as a high order component\nclass MyComponent extends React.Component {\n render() { return <p>Hello World!</p>; }\n}\nwithPureRender(MyComponent); // Your enhanced component",
-      "// Usage as a component decorator\n// ES7 decorator @withPureRender\nclass MyComponent extends React.Component {\n render() { return <p>Hello World!</p>; }\n}\n// You are all set!"
+      "// Usage as a high order component\nclass MyComponent extends React.Component {\n render() { return <p>Hello World!</p>; }\n}\nwithPureRender(MyComponent); // Your enhanced component"
     ],
-    "lineNumber": 68,
+    "lineNumber": 61,
     "since": "1.0.0",
     "params": [
       {

@@ -33,8 +33,8 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-reportChanges">reportChanges</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-asPureComponent">asPureComponent</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-shouldUpdate">shouldUpdate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-withPureRender">withPureRender</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getComponentName">getComponentName</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getPropList">getPropList</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Change">Change</a></span></span></li>
@@ -100,18 +100,11 @@ export function shouldUpdate({ props, state }, nProps, nState) {
  *  render() { return &lt;p&gt;Hello World!&lt;/p&gt;; }
  * }
  * withPureRender(MyComponent); // Your enhanced component
- * @example
- * // Usage as a component decorator
- * // ES7 decorator @withPureRender
- * class MyComponent extends React.Component {
- *  render() { return &lt;p&gt;Hello World!&lt;/p&gt;; }
- * }
- * // You are all set!
  * @param {React.Component} PureComponent - the component to be enhanced
  * @return {React.Component} - the enhanced component
  * @since 1.0.0
  */
-export function asPureComponent(PureComponent) {
+export function withPureRender(PureComponent) {
   return class extends React.Component {
 
     static displayName = getComponentName(PureComponent);

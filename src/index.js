@@ -54,13 +54,6 @@ export function shouldUpdate({ props, state }, nProps, nState) {
  *  render() { return <p>Hello World!</p>; }
  * }
  * withPureRender(MyComponent); // Your enhanced component
- * @example
- * // Usage as a component decorator
- * // ES7 decorator @withPureRender
- * class MyComponent extends React.Component {
- *  render() { return <p>Hello World!</p>; }
- * }
- * // You are all set!
  * @param {React.Component} PureComponent - the component to be enhanced
  * @return {React.Component} - the enhanced component
  * @since 1.0.0
