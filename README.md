@@ -38,6 +38,8 @@ This module is currently available only on [npm](https://www.npmjs.com/).
 
 Install with:
 
+**Still not published, soon will be**
+
 `npm install react-update-helper --save`
 
 You are done, check the [Usage](#usage) section to know how to use it.
