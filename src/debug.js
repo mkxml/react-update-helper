@@ -39,7 +39,7 @@ const logFunc = debug('ReactUpdateHelper');
  * @return {Array<Change>} - the changes that took place
  * @since 1.0.0
  */
-function reportChanges(context, nProps, nState, log = logFunc) {
+export function reportChanges(context, nProps, nState, log = logFunc) {
   const props = context.props || {};
   const state = context.state || {};
   const newProps = nProps || {};
@@ -76,8 +76,3 @@ function reportChanges(context, nProps, nState, log = logFunc) {
   });
   return changes;
 }
-
-// Exporting functions
-export default {
-  reportChanges,
-};

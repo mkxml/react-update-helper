@@ -7,7 +7,7 @@ import keys from 'lodash.keys';
  * @return {array} - the props names
  * @since 1.0.0
  */
-function getPropList(ctx) {
+export function getPropList(ctx) {
   return keys(ctx.constructor.propTypes || ctx.propTypes || {});
 }
 
@@ -18,12 +18,6 @@ function getPropList(ctx) {
  * @return {string} - the component name
  * @since 1.0.0
  */
-function getComponentName(ctx) {
+export function getComponentName(ctx) {
   return ctx.constructor.displayName || ctx.displayName || ctx.name || ctx.constructor.name;
 }
-
-// Exporting functions
-export default {
-  getPropList,
-  getComponentName,
-};

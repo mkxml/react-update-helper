@@ -16,7 +16,7 @@ import keys from 'lodash.keys';
  * @return {boolean} - true if should update the component else false
  * @since 1.0.0
  */
-function shouldUpdate({ props, state }, nProps, nState) {
+export function shouldUpdate({ props, state }, nProps, nState) {
   const propsKeys = keys(props || {});
   const stateKeys = keys(state || {});
   const nPropsKeys = keys(nProps || {});
@@ -65,7 +65,7 @@ function shouldUpdate({ props, state }, nProps, nState) {
  * @return {React.Component} - the enhanced component
  * @since 1.0.0
  */
-function withPureRender(PureComponent) {
+export function withPureRender(PureComponent) {
   return class extends React.Component {
 
     static displayName = getComponentName(PureComponent);
@@ -84,9 +84,3 @@ function withPureRender(PureComponent) {
     }
   };
 }
-
-// Exporting functions
-export default {
-  shouldUpdate,
-  withPureRender,
-};
