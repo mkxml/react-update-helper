@@ -6,12 +6,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "react-update-helper/src/util.js~getproplist",
-    "function/index.html#static-function-getPropList",
-    "<span>getPropList</span> <span class=\"search-result-import-path\">react-update-helper/src/util.js</span>",
-    "function"
-  ],
-  [
     "react-update-helper/src/debug.js~reportchanges",
     "function/index.html#static-function-reportChanges",
     "<span>reportChanges</span> <span class=\"search-result-import-path\">react-update-helper/src/debug.js</span>",

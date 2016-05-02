@@ -36,7 +36,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-shouldUpdate">shouldUpdate</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-withPureRender">withPureRender</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getComponentName">getComponentName</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getPropList">getPropList</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Change">Change</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://facebook.github.io/react/docs/component-api.html">React.Component</a></span></span></li>
 </ul>
@@ -48,7 +47,7 @@
 import { is } from &apos;immutable&apos;;
 import union from &apos;lodash.union&apos;;
 import keys from &apos;lodash.keys&apos;;
-import { getPropList, getComponentName } from &apos;./util&apos;;
+import { getComponentName } from &apos;./util&apos;;
 
 /**
  * @typedef {Object} Change
@@ -90,7 +89,7 @@ export function reportChanges(context, nProps, nState, log = logFunc) {
   const state = context.state || {};
   const newProps = nProps || {};
   const newState = nState || {};
-  const availableProps = getPropList(context);
+  const availableProps = union(keys(props), keys(newProps));
   const stateKeys = union(keys(state), keys(newState));
   const name = getComponentName(context);
   const changes = [];

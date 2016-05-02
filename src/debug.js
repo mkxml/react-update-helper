@@ -2,7 +2,7 @@ import debug from 'debug';
 import { is } from 'immutable';
 import union from 'lodash.union';
 import keys from 'lodash.keys';
-import { getPropList, getComponentName } from './util';
+import { getComponentName } from './util';
 
 /**
  * @typedef {Object} Change
@@ -44,7 +44,7 @@ export function reportChanges(context, nProps, nState, log = logFunc) {
   const state = context.state || {};
   const newProps = nProps || {};
   const newState = nState || {};
-  const availableProps = getPropList(context);
+  const availableProps = union(keys(props), keys(newProps));
   const stateKeys = union(keys(state), keys(newState));
   const name = getComponentName(context);
   const changes = [];

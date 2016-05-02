@@ -10,7 +10,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import debug from 'debug';\nimport { is } from 'immutable';\nimport union from 'lodash.union';\nimport keys from 'lodash.keys';\nimport { getPropList, getComponentName } from './util';\n\n/**\n * @typedef {Object} Change\n * @property {string} component the component name\n * @property {string} type string containing either 'props' or 'state'\n * @property {any} from the original value of the change\n * @property {any} to the new value of the change\n */\n\n/**\n * The main color of the output log\n * @type {string}\n * @see http://stackoverflow.com/a/13017382/1468883\n * @since 1.0.0\n */\nconst COLOR = 'color: #07f';\n\n/**\n * The default log funcion to be used\n * @type {function}\n * @since 1.0.0\n */\nconst logFunc = debug('ReactUpdateHelper');\n\n/**\n * Log and return the changes in a component as they occur to help with debugging\n * @protected\n * @param {object} context - the component context\n * @param {object} context.props - the component props object\n * @param {object} context.state - the component state object\n * @param {object} nProps - the next props in the update process\n * @param {object} nState - the next state in the update process\n * @param {function} log - the log function to use when logging changes\n * @return {Array<Change>} - the changes that took place\n * @since 1.0.0\n */\nexport function reportChanges(context, nProps, nState, log = logFunc) {\n  const props = context.props || {};\n  const state = context.state || {};\n  const newProps = nProps || {};\n  const newState = nState || {};\n  const availableProps = getPropList(context);\n  const stateKeys = union(keys(state), keys(newState));\n  const name = getComponentName(context);\n  const changes = [];\n  availableProps.forEach((key) => {\n    const oldValue = props[key];\n    const newValue = newProps[key];\n    if (!is(oldValue, newValue)) {\n      changes.push({\n        component: name,\n        type: 'props',\n        from: props[key],\n        to: newProps[key],\n      });\n      log('%c %s: changed prop %s from %o to %o', COLOR, name, key, oldValue, newValue);\n    }\n  });\n  stateKeys.forEach((key) => {\n    const oldValue = state[key];\n    const newValue = newState[key];\n    if (!is(oldValue, newValue)) {\n      changes.push({\n        component: name,\n        type: 'state',\n        from: state[key],\n        to: newState[key],\n      });\n      log('%c %s: changed state key %s from %o to %o', COLOR, name, key, oldValue, newValue);\n    }\n  });\n  return changes;\n}\n"
+    "content": "import debug from 'debug';\nimport { is } from 'immutable';\nimport union from 'lodash.union';\nimport keys from 'lodash.keys';\nimport { getComponentName } from './util';\n\n/**\n * @typedef {Object} Change\n * @property {string} component the component name\n * @property {string} type string containing either 'props' or 'state'\n * @property {any} from the original value of the change\n * @property {any} to the new value of the change\n */\n\n/**\n * The main color of the output log\n * @type {string}\n * @see http://stackoverflow.com/a/13017382/1468883\n * @since 1.0.0\n */\nconst COLOR = 'color: #07f';\n\n/**\n * The default log funcion to be used\n * @type {function}\n * @since 1.0.0\n */\nconst logFunc = debug('ReactUpdateHelper');\n\n/**\n * Log and return the changes in a component as they occur to help with debugging\n * @protected\n * @param {object} context - the component context\n * @param {object} context.props - the component props object\n * @param {object} context.state - the component state object\n * @param {object} nProps - the next props in the update process\n * @param {object} nState - the next state in the update process\n * @param {function} log - the log function to use when logging changes\n * @return {Array<Change>} - the changes that took place\n * @since 1.0.0\n */\nexport function reportChanges(context, nProps, nState, log = logFunc) {\n  const props = context.props || {};\n  const state = context.state || {};\n  const newProps = nProps || {};\n  const newState = nState || {};\n  const availableProps = union(keys(props), keys(newProps));\n  const stateKeys = union(keys(state), keys(newState));\n  const name = getComponentName(context);\n  const changes = [];\n  availableProps.forEach((key) => {\n    const oldValue = props[key];\n    const newValue = newProps[key];\n    if (!is(oldValue, newValue)) {\n      changes.push({\n        component: name,\n        type: 'props',\n        from: props[key],\n        to: newProps[key],\n      });\n      log('%c %s: changed prop %s from %o to %o', COLOR, name, key, oldValue, newValue);\n    }\n  });\n  stateKeys.forEach((key) => {\n    const oldValue = state[key];\n    const newValue = newState[key];\n    if (!is(oldValue, newValue)) {\n      changes.push({\n        component: name,\n        type: 'state',\n        from: state[key],\n        to: newState[key],\n      });\n      log('%c %s: changed state key %s from %o to %o', COLOR, name, key, oldValue, newValue);\n    }\n  });\n  return changes;\n}\n"
   },
   {
     "__docId__": 1,
@@ -343,47 +343,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import keys from 'lodash.keys';\n\n/**\n * Get the props name list of the given React component\n * @protected\n * @param {object} ctx - the component context, containing the name, props and state values\n * @return {array} - the props names\n * @since 1.0.0\n */\nexport function getPropList(ctx) {\n  return keys(ctx.constructor.propTypes || ctx.propTypes || {});\n}\n\n/**\n * Get the name of the given React component\n * @protected\n * @param {object} ctx - the component context, containing the name, props and state values\n * @return {string} - the component name\n * @since 1.0.0\n */\nexport function getComponentName(ctx) {\n  return ctx.constructor.displayName || ctx.displayName || ctx.name || ctx.constructor.name;\n}\n"
+    "content": "/**\n * Get the name of the given React component\n * @protected\n * @param {object} ctx - the component context, containing the name, props and state values\n * @return {string} - the component name\n * @since 1.0.0\n */\nexport function getComponentName(ctx) {\n  return ctx.constructor.displayName || ctx.displayName || ctx.name || ctx.constructor.name;\n}\n"
   },
   {
     "__docId__": 10,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "getPropList",
-    "memberof": "src/util.js",
-    "longname": "src/util.js~getPropList",
-    "access": "protected",
-    "export": true,
-    "importPath": "react-update-helper/src/util.js",
-    "importStyle": "{getPropList}",
-    "description": "Get the props name list of the given React component",
-    "lineNumber": 10,
-    "since": "1.0.0",
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "object"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "ctx",
-        "description": "the component context, containing the name, props and state values"
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "array"
-      ],
-      "spread": false,
-      "description": "the props names"
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 11,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -395,7 +358,7 @@
     "importPath": "react-update-helper/src/util.js",
     "importStyle": "{getComponentName}",
     "description": "Get the name of the given React component",
-    "lineNumber": 21,
+    "lineNumber": 8,
     "since": "1.0.0",
     "params": [
       {
@@ -420,7 +383,7 @@
     "generator": false
   },
   {
-    "__docId__": 13,
+    "__docId__": 12,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -433,7 +396,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 14,
+    "__docId__": 13,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -446,7 +409,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 15,
+    "__docId__": 14,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -459,7 +422,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 16,
+    "__docId__": 15,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -472,7 +435,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 17,
+    "__docId__": 16,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -485,7 +448,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 18,
+    "__docId__": 17,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -498,7 +461,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 19,
+    "__docId__": 18,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -511,7 +474,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 20,
+    "__docId__": 19,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -524,7 +487,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 21,
+    "__docId__": 20,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -537,7 +500,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 22,
+    "__docId__": 21,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -550,7 +513,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 23,
+    "__docId__": 22,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -563,7 +526,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 24,
+    "__docId__": 23,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -576,7 +539,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 25,
+    "__docId__": 24,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -589,7 +552,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 26,
+    "__docId__": 25,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -602,7 +565,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 27,
+    "__docId__": 26,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -615,7 +578,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 28,
+    "__docId__": 27,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -628,7 +591,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 29,
+    "__docId__": 28,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -641,7 +604,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 30,
+    "__docId__": 29,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -654,7 +617,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 31,
+    "__docId__": 30,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -667,7 +630,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 32,
+    "__docId__": 31,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -680,7 +643,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 33,
+    "__docId__": 32,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -693,7 +656,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 34,
+    "__docId__": 33,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -706,7 +669,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 35,
+    "__docId__": 34,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -719,7 +682,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 36,
+    "__docId__": 35,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -732,7 +695,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 37,
+    "__docId__": 36,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -745,7 +708,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 38,
+    "__docId__": 37,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -758,7 +721,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 39,
+    "__docId__": 38,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -771,7 +734,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 40,
+    "__docId__": 39,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -784,7 +747,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 41,
+    "__docId__": 40,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -797,7 +760,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 42,
+    "__docId__": 41,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -810,7 +773,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 43,
+    "__docId__": 42,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -823,7 +786,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 44,
+    "__docId__": 43,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -836,7 +799,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 45,
+    "__docId__": 44,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -849,7 +812,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 46,
+    "__docId__": 45,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -862,7 +825,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 47,
+    "__docId__": 46,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -875,7 +838,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 48,
+    "__docId__": 47,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -888,7 +851,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 49,
+    "__docId__": 48,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -901,7 +864,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 50,
+    "__docId__": 49,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -914,7 +877,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 51,
+    "__docId__": 50,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -927,7 +890,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 52,
+    "__docId__": 51,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -940,7 +903,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 53,
+    "__docId__": 52,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -953,7 +916,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 54,
+    "__docId__": 53,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -966,7 +929,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 55,
+    "__docId__": 54,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -979,7 +942,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 56,
+    "__docId__": 55,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -992,7 +955,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 57,
+    "__docId__": 56,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1005,7 +968,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 58,
+    "__docId__": 57,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1018,7 +981,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 59,
+    "__docId__": 58,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1031,7 +994,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 61,
+    "__docId__": 60,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1044,7 +1007,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 62,
+    "__docId__": 61,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1057,7 +1020,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 63,
+    "__docId__": 62,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1070,7 +1033,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 64,
+    "__docId__": 63,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1083,7 +1046,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 65,
+    "__docId__": 64,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1096,7 +1059,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 66,
+    "__docId__": 65,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1109,7 +1072,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 67,
+    "__docId__": 66,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1122,7 +1085,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 68,
+    "__docId__": 67,
     "kind": "external",
     "static": true,
     "variation": null,
