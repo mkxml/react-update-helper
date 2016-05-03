@@ -54,7 +54,6 @@
     "karma-coverage": "0.5.5",
     "karma-mocha": "0.2.2",
     "karma-mocha-reporter": "2.0.2",
-    "karma-nyan-reporter": "0.2.4",
     "karma-phantomjs-launcher": "1.0.0",
     "karma-sinon": "1.0.4",
     "karma-sourcemap-loader": "0.3.7",
