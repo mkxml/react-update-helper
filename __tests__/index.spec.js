@@ -201,7 +201,7 @@ describe('integration', () => {
     it('should not log changes when in production env', () => {
       // spy on console log
       sinon.spy(window.console, 'log');
-      const renderedComponent = shallow(<TestComponent test="foo" />);
+      const renderedComponent = shallow(<HighOrderComponent test="foo" />);
       // change, causing update
       renderedComponent.setProps({ test: 'bar' });
       const called = window.console.log.called;
