@@ -12,19 +12,11 @@ import { getComponentName } from './util';
  * @property {any} to the new value of the change
  */
 
-/**
- * The main color of the output log
- * @type {string}
- * @see http://stackoverflow.com/a/13017382/1468883
- * @since 1.0.0
- */
-const COLOR = 'color: #07f';
-
-/**
- * The default log funcion to be used
- * @type {function}
- * @since 1.0.0
- */
+ /**
+  * The default log funcion to be used
+  * @type {function}
+  * @since 1.0.0
+  */
 const logFunc = debug('ReactUpdateHelper');
 
 /**
@@ -58,7 +50,7 @@ export function reportChanges(context, nProps, nState, log = logFunc) {
         from: props[key],
         to: newProps[key],
       });
-      log('%c %s: changed prop %s from %o to %o', COLOR, name, key, oldValue, newValue);
+      log('%s: changed prop %s from %o to %o', name, key, oldValue, newValue);
     }
   });
   stateKeys.forEach((key) => {
@@ -71,7 +63,7 @@ export function reportChanges(context, nProps, nState, log = logFunc) {
         from: state[key],
         to: newState[key],
       });
-      log('%c %s: changed state key %s from %o to %o', COLOR, name, key, oldValue, newValue);
+      log('%s: changed state key %s from %o to %o', name, key, oldValue, newValue);
     }
   });
   return changes;

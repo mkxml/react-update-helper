@@ -2,7 +2,7 @@ import { reportChanges } from '../src/debug';
 import { fakeComponent, newProps, newState } from './fixtures/fakeObjects';
 
 // cancel show console output
-window.console.log = (x) => x;
+// window.console.log = (x) => x;
 
 describe('debug', () => {
   it('should return array with changes', () => {
@@ -31,8 +31,7 @@ describe('debug', () => {
     reportChanges(newFake, props, newFake.state, log);
     const fnCall = log.getCall(0);
     const correctMessage = [
-      '%c %s: changed prop %s from %o to %o',
-      'color: #07f',
+      '%s: changed prop %s from %o to %o',
       'Test',
       't1',
       undefined,
@@ -49,8 +48,7 @@ describe('debug', () => {
     reportChanges(newFake, props, newFake.state, log);
     const fnCall = log.getCall(0);
     const correctMessage = [
-      '%c %s: changed prop %s from %o to %o',
-      'color: #07f',
+      '%s: changed prop %s from %o to %o',
       'Test',
       't1',
       0,
@@ -79,8 +77,7 @@ describe('debug', () => {
     reportChanges(newFake, newFake.props, state, log);
     const fnCall = log.getCall(0);
     const correctMessage = [
-      '%c %s: changed state key %s from %o to %o',
-      'color: #07f',
+      '%s: changed state key %s from %o to %o',
       'Test',
       't1',
       undefined,
@@ -97,8 +94,7 @@ describe('debug', () => {
     reportChanges(newFake, newFake.props, state, log);
     const fnCall = log.getCall(0);
     const correctMessage = [
-      '%c %s: changed state key %s from %o to %o',
-      'color: #07f',
+      '%s: changed state key %s from %o to %o',
       'Test',
       't1',
       1,
@@ -120,8 +116,7 @@ describe('debug', () => {
     reportChanges(fakeComponent, newProps, newState, log);
     const fnCall = log.getCall(0);
     const correctMessage = [
-      '%c %s: changed prop %s from %o to %o',
-      'color: #07f',
+      '%s: changed prop %s from %o to %o',
       'Test',
       't1',
       0,
@@ -135,8 +130,7 @@ describe('debug', () => {
     reportChanges(fakeComponent, newProps, newState, log);
     const fnCall = log.getCall(2);
     const correctMessage = [
-      '%c %s: changed state key %s from %o to %o',
-      'color: #07f',
+      '%s: changed state key %s from %o to %o',
       'Test',
       't1',
       undefined,
