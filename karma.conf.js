@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 module.exports = function karma(config) {
   config.set({
     browsers: ['PhantomJS'],
@@ -40,7 +42,10 @@ module.exports = function karma(config) {
         'react/addons': true,
         'react/lib/ReactContext': true,
         'react/lib/ExecutionEnvironment': true
-      }
+      },
+      plugins: [
+        new webpack.NormalModuleReplacementPlugin(/^debug$/g, '../__tests__/mocks/debug.js')
+      ]
     },
     webpackServer: {
       noInfo: true

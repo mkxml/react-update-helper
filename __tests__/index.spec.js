@@ -7,9 +7,6 @@ import TestComponent from './fixtures/TestComponent';
 import DecoratorComponent from './fixtures/DecoratorComponent';
 import HighOrderComponent from './fixtures/HighOrderComponent';
 
-// enable debug
-window.localStorage.debug = '*';
-
 // cancel show console output
 window.console.log = (x) => x;
 
