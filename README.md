@@ -38,9 +38,7 @@ It currently needs three peerDependencies.
 
 This module is currently available only on [npm](https://www.npmjs.com/).
 
-Install with:
-
-**Still not published, soon will be**
+Install now:
 
 `npm install react-update-helper --save`
 
