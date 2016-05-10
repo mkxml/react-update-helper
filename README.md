@@ -1,5 +1,7 @@
 # react-update-helper
 
+[![Build]](https://travis-ci.org/mkautzmann/react-update-helper) [![SemVer]](http://semver.org/) [![Coverage]](https://coveralls.io/github/mkautzmann/react-update-helper?branch=master) [![License]](LICENSE)
+
 A [React](https://facebook.github.io/react/) plugin to debug and accelerate your component updates.
 
 It's compatible with [debug](https://github.com/visionmedia/debug) and [Immutable](https://facebook.github.io/immutable-js/).
@@ -188,3 +190,8 @@ Please, before filing issues or sending PRs, read the [CONTRIBUTING](CONTRIBUTIN
 ## License
 
 [MIT](LICENSE)
+
+[Build]: https://img.shields.io/travis/mkautzmann/react-update-helper.svg
+[SemVer]: https://img.shields.io/:semver-%E2%9C%93-brightgreen.svg
+[Coverage]: https://img.shields.io/coveralls/mkautzmann/react-update-helper/master.svg
+[License]: https://img.shields.io/npm/l/react-update-helper.svg
