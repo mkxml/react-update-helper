@@ -6,3 +6,4 @@ esdoc.json
 karma.conf.js
 src
 tests.webpack.js
+CONTRIBUTING.md
