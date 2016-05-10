@@ -158,6 +158,26 @@ class Greet extends React.Component {
 export default Greet;
 ```
 
+### Debugging updates
+
+We use [debug](https://github.com/visionmedia/debug) to log component updates when in development environment and when debugging is enabled.
+
+You can test this by enabling the namespace `ReactUpdateHelper` in `debug`.
+
+Or you can just enable all namespaces with `*`.
+
+In the browser you can do that as follows:
+
+```javascript
+// Just enabling react-update-helper messages
+window.localStorage.debug = 'ReactUpdateHelper';
+
+// Enabling all debug-powered logs
+window.localStorage.debug = '*';
+```
+
+See more about debug in their [repository page](https://github.com/visionmedia/debug).
+
 ### Optimized in production
 
 As React does, we disable any debug code when performing a production build.
