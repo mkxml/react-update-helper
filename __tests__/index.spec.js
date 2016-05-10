@@ -168,7 +168,6 @@ describe('integration', () => {
       // changing prop to force update
       renderedComponent.setProps({ test: 'bar' });
       const updateCount = renderedComponent.text();
-      // const updated = renderedComponent.equals(<div>0</div>);
       expect(updateCount).to.eql('1');
     });
     it('should not perform useless re-renders in practice', () => {
