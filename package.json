@@ -11,7 +11,11 @@
     "docs": "esdoc -c esdoc.json",
     "ci": "npm run test && coveralls < coverage/lcov.info"
   },
-  "author": "Matheus Kautzmann <matheus@fluidrobot.com>",
+  "author": {
+    "name": "Matheus Kautzmann",
+    "email": "matheus@fluidrobot.com",
+    "url": "https://twitter.com/m_kautzmann"
+  },
   "license": "MIT",
   "keywords": [
     "react",
@@ -22,6 +26,13 @@
     "immutable",
     "debug"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mkautzmann/react-update-helper"
+  },
+  "bugs": {
+    "url": "https://github.com/mkautzmann/react-update-helper/issues"
+  },
   "main": "lib/index.js",
   "devDependencies": {
     "babel-cli": "6.8.0",
