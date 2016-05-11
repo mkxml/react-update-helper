@@ -176,6 +176,10 @@ window.localStorage.debug = '*';
 
 See more about debug in their [repository page](https://github.com/visionmedia/debug).
 
+#### Quick Tip: When using `immutable` objects use a custom formatter in the console
+
+This [custom formatter](https://github.com/andrewdavey/immutable-devtools) for Chrome Dev Tools makes `immutable` object debugging a breeze. It works perfectly with `react-update-helper`!
+
 ### Optimized in production
 
 As React does, we disable any debug code when performing a production build.
