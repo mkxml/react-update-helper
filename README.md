@@ -1,6 +1,6 @@
 # react-update-helper
 
-[![Build]](https://travis-ci.org/mkautzmann/react-update-helper) [![SemVer]](http://semver.org/) [![Coverage]](https://coveralls.io/github/mkautzmann/react-update-helper?branch=master) [![License]](LICENSE)
+[![Build]](https://travis-ci.org/mkautzmann/react-update-helper) [![SemVer]](http://semver.org/) [![Coverage]](https://coveralls.io/github/mkautzmann/react-update-helper?branch=master) [![Docs]](https://doc.esdoc.org/github.com/mkautzmann/react-update-helper/) [![License]](LICENSE)
 
 A [React](https://facebook.github.io/react/) plugin to debug and accelerate your component updates.
 
@@ -186,6 +186,10 @@ The concerns are the same as if you were building React for production usage in 
 
 If you use [Webpack](https://webpack.github.io/), [here](http://moduscreate.com/optimizing-react-es6-webpack-production-build/) is a nice guide.
 
+#### Whole documentation
+
+See the whole docs in the `docs` folder of this repo or [directly online](https://doc.esdoc.org/github.com/mkautzmann/react-update-helper/).
+
 ## Compatibility
 
 Compatibility with [React](https://facebook.github.io/react/), [Immutable](https://facebook.github.io/immutable-js/) and [debug](https://github.com/visionmedia/debug) have been tested and should be maintained.
@@ -212,4 +216,5 @@ Please, before filing issues or sending PRs, read the [CONTRIBUTING](CONTRIBUTIN
 [Build]: https://img.shields.io/travis/mkautzmann/react-update-helper.svg
 [SemVer]: https://img.shields.io/:semver-%E2%9C%93-brightgreen.svg
 [Coverage]: https://img.shields.io/coveralls/mkautzmann/react-update-helper/master.svg
+[Docs]: docs/badge.svg
 [License]: https://img.shields.io/npm/l/react-update-helper.svg
