@@ -19,7 +19,7 @@
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
   
-  
+  <a data-ice="repoURL" href="https://github.com/mkautzmann/react-update-helper" class="repo-url-github">Repository</a>
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -43,6 +43,7 @@
 </nav>
 
 <div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="react-update-helper">react-update-helper</h1>
+<p><a href="https://travis-ci.org/mkautzmann/react-update-helper"><img src="https://img.shields.io/travis/mkautzmann/react-update-helper.svg" alt="Build"></a> <a href="http://semver.org/"><img src="https://img.shields.io/:semver-%E2%9C%93-brightgreen.svg" alt="SemVer"></a> <a href="https://coveralls.io/github/mkautzmann/react-update-helper?branch=master"><img src="https://img.shields.io/coveralls/mkautzmann/react-update-helper/master.svg" alt="Coverage"></a> <a href="https://doc.esdoc.org/github.com/mkautzmann/react-update-helper/"><img src="https://doc.esdoc.org/github.com/mkautzmann/react-update-helper/badge.svg" alt="Docs"></a> <a href="LICENSE"><img src="https://img.shields.io/npm/l/react-update-helper.svg" alt="License"></a></p>
 <p>A <a href="https://facebook.github.io/react/">React</a> plugin to debug and accelerate your component updates.</p>
 <p>It&apos;s compatible with <a href="https://github.com/visionmedia/debug">debug</a> and <a href="https://facebook.github.io/immutable-js/">Immutable</a>.</p>
 <h2 id="goal">Goal</h2>
@@ -72,7 +73,7 @@
 <li><a href="https://facebook.github.io/immutable-js/">Immutable</a></li>
 </ul>
 <p>This module is currently available only on <a href="https://www.npmjs.com/">npm</a>.</p>
-<p>Install with:</p>
+<p>Install now:</p>
 <p><code>npm install react-update-helper --save</code></p>
 <p>You are done, check the <a href="#usage">Usage</a> section to know how to use it.</p>
 <p><strong>Why those peerDependencies?</strong></p>
@@ -165,11 +166,25 @@ class Greet extends React.Component {
 // Just export Greet
 export default Greet;</code>
 </code></pre>
+<h3 id="debugging-updates">Debugging updates</h3>
+<p>We use <a href="https://github.com/visionmedia/debug">debug</a> to log component updates when in development environment and when debugging is enabled.</p>
+<p>You can test this by enabling the namespace <code>ReactUpdateHelper</code> in <code>debug</code>.</p>
+<p>Or you can just enable all namespaces with <code>*</code>.</p>
+<p>In the browser you can do that as follows:</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">// Just enabling react-update-helper messages
+window.localStorage.debug = &apos;ReactUpdateHelper&apos;;
+
+// Enabling all debug-powered logs
+window.localStorage.debug = &apos;*&apos;;</code>
+</code></pre>
+<p>See more about debug in their <a href="https://github.com/visionmedia/debug">repository page</a>.</p>
 <h3 id="optimized-in-production">Optimized in production</h3>
 <p>As React does, we disable any debug code when performing a production build.</p>
 <p>Just make sure you are building setting environment variable <code>NODE_ENV</code> to <code>production</code> value and performing dead code elimination.</p>
 <p>The concerns are the same as if you were building React for production usage in the first place.</p>
 <p>If you use <a href="https://webpack.github.io/">Webpack</a>, <a href="http://moduscreate.com/optimizing-react-es6-webpack-production-build/">here</a> is a nice guide.</p>
+<h4 id="whole-documentation">Whole documentation</h4>
+<p>See the whole docs in the <code>docs</code> folder of this repo or <a href="https://doc.esdoc.org/github.com/mkautzmann/react-update-helper/">directly online</a>.</p>
 <h2 id="compatibility">Compatibility</h2>
 <p>Compatibility with <a href="https://facebook.github.io/react/">React</a>, <a href="https://facebook.github.io/immutable-js/">Immutable</a> and <a href="https://github.com/visionmedia/debug">debug</a> have been tested and should be maintained.</p>
 <p>Though not tested, it should work with <a href="https://facebook.github.io/react-native/">react-native</a> since it does not mess with DOM and browser specific APIs.</p>

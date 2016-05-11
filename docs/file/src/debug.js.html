@@ -19,7 +19,7 @@
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
   
-  
+  <a data-ice="repoURL" href="https://github.com/mkautzmann/react-update-helper" class="repo-url-github">Repository</a>
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -57,19 +57,11 @@ import { getComponentName } from &apos;./util&apos;;
  * @property {any} to the new value of the change
  */
 
-/**
- * The main color of the output log
- * @type {string}
- * @see http://stackoverflow.com/a/13017382/1468883
- * @since 1.0.0
- */
-const COLOR = &apos;color: #07f&apos;;
-
-/**
- * The default log funcion to be used
- * @type {function}
- * @since 1.0.0
- */
+ /**
+  * The default log funcion to be used
+  * @type {function}
+  * @since 1.0.0
+  */
 const logFunc = debug(&apos;ReactUpdateHelper&apos;);
 
 /**
@@ -103,7 +95,7 @@ export function reportChanges(context, nProps, nState, log = logFunc) {
         from: props[key],
         to: newProps[key],
       });
-      log(&apos;%c %s: changed prop %s from %o to %o&apos;, COLOR, name, key, oldValue, newValue);
+      log(&apos;%s: changed prop %s from %o to %o&apos;, name, key, oldValue, newValue);
     }
   });
   stateKeys.forEach((key) =&gt; {
@@ -116,7 +108,7 @@ export function reportChanges(context, nProps, nState, log = logFunc) {
         from: state[key],
         to: newState[key],
       });
-      log(&apos;%c %s: changed state key %s from %o to %o&apos;, COLOR, name, key, oldValue, newValue);
+      log(&apos;%s: changed state key %s from %o to %o&apos;, name, key, oldValue, newValue);
     }
   });
   return changes;
