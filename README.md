@@ -216,5 +216,5 @@ Please, before filing issues or sending PRs, read the [CONTRIBUTING](CONTRIBUTIN
 [Build]: https://img.shields.io/travis/mkautzmann/react-update-helper.svg
 [SemVer]: https://img.shields.io/:semver-%E2%9C%93-brightgreen.svg
 [Coverage]: https://img.shields.io/coveralls/mkautzmann/react-update-helper/master.svg
-[Docs]: docs/badge.svg
+[Docs]: https://doc.esdoc.org/github.com/mkautzmann/react-update-helper/badge.svg
 [License]: https://img.shields.io/npm/l/react-update-helper.svg
