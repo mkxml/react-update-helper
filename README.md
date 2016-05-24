@@ -2,6 +2,8 @@
 
 [![Build]](https://travis-ci.org/mkautzmann/react-update-helper) [![SemVer]](http://semver.org/) [![Coverage]](https://coveralls.io/github/mkautzmann/react-update-helper?branch=master) [![Docs]](https://doc.esdoc.org/github.com/mkautzmann/react-update-helper/) [![License]](LICENSE)
 
+![Brief demo of react-update-helper debugging capabilities](https://cldup.com/TazTb8juee.gif)
+
 A [React](https://facebook.github.io/react/) plugin to debug and accelerate your component updates.
 
 It's compatible with [debug](https://github.com/visionmedia/debug) and [Immutable](https://facebook.github.io/immutable-js/).
