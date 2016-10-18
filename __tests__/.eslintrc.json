@@ -19,6 +19,7 @@
     "react"
   ],
   "rules": {
-    "new-cap": [0]
+    "new-cap": [0],
+    "import/no-extraneous-dependencies": "off"
   }
 }
