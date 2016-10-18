@@ -18,6 +18,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "react-update-helper/src/index.js~withdebuginfo",
+    "function/index.html#static-function-withDebugInfo",
+    "<span>withDebugInfo</span> <span class=\"search-result-import-path\">react-update-helper/src/index.js</span>",
+    "function"
+  ],
+  [
     "react-update-helper/src/index.js~withpurerender",
     "function/index.html#static-function-withPureRender",
     "<span>withPureRender</span> <span class=\"search-result-import-path\">react-update-helper/src/index.js</span>",

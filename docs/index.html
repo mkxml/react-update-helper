@@ -34,6 +34,7 @@
     
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-reportChanges">reportChanges</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-shouldUpdate">shouldUpdate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-withDebugInfo">withDebugInfo</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-withPureRender">withPureRender</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getComponentName">getComponentName</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Change">Change</a></span></span></li>
@@ -44,25 +45,32 @@
 
 <div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="react-update-helper">react-update-helper</h1>
 <p><a href="https://travis-ci.org/mkautzmann/react-update-helper"><img src="https://img.shields.io/travis/mkautzmann/react-update-helper.svg" alt="Build"></a> <a href="http://semver.org/"><img src="https://img.shields.io/:semver-%E2%9C%93-brightgreen.svg" alt="SemVer"></a> <a href="https://coveralls.io/github/mkautzmann/react-update-helper?branch=master"><img src="https://img.shields.io/coveralls/mkautzmann/react-update-helper/master.svg" alt="Coverage"></a> <a href="https://doc.esdoc.org/github.com/mkautzmann/react-update-helper/"><img src="https://doc.esdoc.org/github.com/mkautzmann/react-update-helper/badge.svg" alt="Docs"></a> <a href="LICENSE"><img src="https://img.shields.io/npm/l/react-update-helper.svg" alt="License"></a></p>
-<p>A <a href="https://facebook.github.io/react/">React</a> plugin to debug and accelerate your component updates.</p>
-<p>It&apos;s compatible with <a href="https://github.com/visionmedia/debug">debug</a> and <a href="https://facebook.github.io/immutable-js/">Immutable</a>.</p>
+<p>A <a href="https://facebook.github.io/react/">React</a> set of helpers to debug and accelerate your component updates.</p>
+<p>It works with <a href="https://github.com/visionmedia/debug">debug</a> and <a href="https://facebook.github.io/immutable-js/">Immutable</a>.</p>
 <h2 id="goal">Goal</h2>
-<p>This react plugin basically does two things:</p>
+<p>This react kit is a set of two high order components (<a href="https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.g1hqmwlh4">HOCs</a>) that are useful for react app development:</p>
 <ol>
-<li><p>It helps you prevent useless component updates, thus improving your overall application performance.</p>
+<li><p><code>withPureRender</code> is the first enhancer. It helps you prevent useless component updates (even when using deep Immutable.JS objects).</p>
 </li>
-<li><p>It allows you to have a quick glimpse in why a component updated.</p>
+<li><p><code>withDebugInfo</code> is the second one. It allows you to check why a component updated in your browser console.</p>
 </li>
 </ol>
-<p>The idea combines thoughts of the works of the React team on <a href="https://facebook.github.io/react/docs/pure-render-mixin.html">PureRenderMixin</a> and on a <a href="https://medium.com/@tjholowaychuk/debugging-value-changes-in-react-s-shouldcomponentupdate-ae59b05c5371#.xig19l2nh">post</a> about React prop/state change debugging.</p>
-<h2 id="why-and-when-to-use-this-">Why and when to use this?</h2>
-<p>There are a few use cases:</p>
+<p>The idea combines thoughts from <a href="https://facebook.github.io/react/docs/pure-render-mixin.html">PureRenderMixin</a> and from a <a href="https://medium.com/@tjholowaychuk/debugging-value-changes-in-react-s-shouldcomponentupdate-ae59b05c5371#.xig19l2nh">blog post</a> about React prop/state change debugging.</p>
+<h2 id="why-and-when-to-use-these-helpers-">Why and when to use these helpers?</h2>
+<p>Here are a few common uses:</p>
+<ul>
+<li><p>You might want to use <code>withPureRender</code> when</p>
 <ul>
 <li>You want to use Immutable objects as your props or state values.</li>
 <li>You use Redux with Immutable state objects</li>
+</ul>
+</li>
+<li><p>You might want to use <code>withDebugInfo</code> when:</p>
+<ul>
 <li>You want to debug props and state changes.</li>
-<li>Pair the component update logging with react-perf-addon to help busting performance issues.</li>
-<li>...</li>
+<li>Pairing the component update logging with react-perf-addon to help busting performance issues.</li>
+</ul>
+</li>
 </ul>
 <p>Still don&apos;t know if you need this? Take a look at the <a href="#usage">Usage</a> section.</p>
 <h2 id="install">Install</h2>
@@ -80,16 +88,17 @@
 <p><a href="https://facebook.github.io/react/">React</a> dependency is pretty obvious since this is a react plugin.</p>
 <p><a href="https://facebook.github.io/immutable-js/">Immutable</a> is an optional choice but you might already be using it so there is no reason to duplicate the versions since this module just need the <a href="https://facebook.github.io/immutable-js/docs/#/is">is()</a> function of the <code>immutable</code> package.</p>
 <p>Even if you are not using Immutable on your own, most modern build systems like <code>webpack v2</code> or <code>rollup</code> will isolate the tiny bit of code this module need to operate.</p>
-<p>As for <a href="https://github.com/visionmedia/debug">debug</a>, if you use it we don&apos;t duplicate code and if you don&apos;t it&apos;s a really tiny addition that allows you to turn console logging on/off and avoid the component update logging madness that happen in big apps.</p>
+<p>As for <a href="https://github.com/visionmedia/debug">debug</a>, it is optional and will only be <a href="https://nodejs.org/api/modules.html">required</a> if you use <code>withDebugInfo</code>.</p>
 <h2 id="-a-href-id-usage-a-usage"><a href="#" id="usage"></a>Usage</h2>
-<p>The package exposes two functions that you can use:</p>
+<p>The package exposes one function and two component enhancers that you can use:</p>
 <ul>
-<li><code>shouldUpdate</code>, the core update engine with Immutable support.</li>
-<li><code>withPureRender</code>, the easy plug-and-play function with debug support.</li>
+<li><code>shouldUpdate</code>, the core update function with Immutable support. You may use it directly in your <code>shouldComponentUpdate</code>. Or you can easily switch to the enhancer approach of <code>withPureRender</code>.</li>
+<li><code>withPureRender</code>, the easy plug-and-play enhancer HOC for any React component that will run <code>shouldUpdate</code> in every update attempt for you.</li>
+<li><code>withDebugInfo</code>, the debug function you may use in development to log out a nice component change feed in the browser console.</li>
 </ul>
 <h4 id="withpurerender-component-">withPureRender(Component)</h4>
-<p>The easiest way to get all the goods is using <code>withPureRender</code>.</p>
-<p>You can use it as a <a href="https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.g1hqmwlh4">high order component</a>:</p>
+<p>The easiest way to get all the goods of automatic <code>shouldUpdate</code> is using <code>withPureRender</code>.</p>
+<p>You can use it as a normal high order component as follows:</p>
 <pre><code class="lang-javascript"><code class="source-code prettyprint">// Use react
 import React from &apos;react&apos;;
 
@@ -106,7 +115,7 @@ class Greet extends React.Component {
 // Enhance the Greet with withPureRender and export it
 export default withPureRender(Greet);</code>
 </code></pre>
-<p>You can use it as a ES7 decorator:</p>
+<p>Or you can use it as a ES7 decorator if you support and like that way:</p>
 <pre><code class="lang-javascript"><code class="source-code prettyprint">// Use react
 import React from &apos;react&apos;;
 
@@ -124,7 +133,7 @@ class Greet extends React.Component {
 // Export the already enhanced Greet
 export default Greet;</code>
 </code></pre>
-<p>It works with <a href="https://facebook.github.io/react/docs/reusable-components.html#stateless-functions">pure components</a> too:</p>
+<p>It works with <a href="https://facebook.github.io/react/docs/reusable-components.html#stateless-functions">pure functional components</a> too:</p>
 <pre><code class="lang-javascript"><code class="source-code prettyprint">// Use react
 import React from &apos;react&apos;;
 
@@ -167,7 +176,24 @@ class Greet extends React.Component {
 export default Greet;</code>
 </code></pre>
 <h3 id="debugging-updates">Debugging updates</h3>
-<p>We use <a href="https://github.com/visionmedia/debug">debug</a> to log component updates when in development environment and when debugging is enabled.</p>
+<p>Use <code>withDebugInfo</code> for that matter:</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">// Use react
+import React from &apos;react&apos;;
+
+// Use withPureRender
+import { withDebugInfo } from &apos;react-update-helper&apos;;
+
+// Create the component
+class Greet extends React.Component {
+  render() {
+    return &lt;div&gt;Hello {this.props.greet}!&lt;/div&gt;;
+  }
+}
+
+// Enhance the Greet with withDebugInfo and export it
+export default withDebugInfo(Greet);</code>
+</code></pre>
+<p>We use <a href="https://github.com/visionmedia/debug">debug</a> internally to log component updates when debugging is enabled.</p>
 <p>You can test this by enabling the namespace <code>ReactUpdateHelper</code> in <code>debug</code>.</p>
 <p>Or you can just enable all namespaces with <code>*</code>.</p>
 <p>In the browser you can do that as follows:</p>
@@ -178,9 +204,11 @@ window.localStorage.debug = &apos;ReactUpdateHelper&apos;;
 window.localStorage.debug = &apos;*&apos;;</code>
 </code></pre>
 <p>See more about debug in their <a href="https://github.com/visionmedia/debug">repository page</a>.</p>
-<h3 id="optimized-in-production">Optimized in production</h3>
-<p>As React does, we disable any debug code when performing a production build.</p>
-<p>Just make sure you are building setting environment variable <code>NODE_ENV</code> to <code>production</code> value and performing dead code elimination.</p>
+<h4 id="quick-tip-when-debugging-immutable-https-facebook-github-io-immutable-js-objects-use-a-custom-formatter-in-the-console">Quick Tip: When debugging <a href="https://facebook.github.io/immutable-js/">Immutable</a> objects use a custom formatter in the console</h4>
+<p>This <a href="https://github.com/andrewdavey/immutable-devtools">custom formatter</a> for Chrome Dev Tools makes <code>Immutable</code> object debugging a breeze. It works perfectly with <code>react-update-helper</code>!</p>
+<h3 id="no-debug-in-production">No debug in production</h3>
+<p>As with React warnings, you should disable logs when running in a production environment.</p>
+<p>Just make sure you are conditionally using <code>withDebugInfo</code> with an environment variable of sorts (like setting <code>NODE_ENV</code> to <code>production</code>) and performing dead code elimination.</p>
 <p>The concerns are the same as if you were building React for production usage in the first place.</p>
 <p>If you use <a href="https://webpack.github.io/">Webpack</a>, <a href="http://moduscreate.com/optimizing-react-es6-webpack-production-build/">here</a> is a nice guide.</p>
 <h4 id="whole-documentation">Whole documentation</h4>
@@ -190,13 +218,7 @@ window.localStorage.debug = &apos;*&apos;;</code>
 <p>Though not tested, it should work with <a href="https://facebook.github.io/react-native/">react-native</a> since it does not mess with DOM and browser specific APIs.</p>
 <p>It can theorically work with <a href="https://github.com/developit/preact">preact</a> when using <a href="https://github.com/developit/preact-compat">preact-compat</a> since it mimics React&apos;s API and lifecycle.</p>
 <h2 id="contributing">Contributing</h2>
-<p>This project is welcoming contributions of any kind! Here are some cool topics to get started:</p>
-<ul>
-<li>[ ] Can we make this README better?</li>
-<li>[ ] Improvements in the test suite.</li>
-<li>[ ] Improvements in the documentation.</li>
-<li>[ ] Updates in stale dependencies without breaking anything :smirk:</li>
-</ul>
+<p>This project is welcoming contributions of any kind!</p>
 <p>Please, before filing issues or sending PRs, read the <a href="CONTRIBUTING.md">CONTRIBUTING</a> guide.</p>
 <h2 id="license">License</h2>
 <p><a href="LICENSE">MIT</a></p>
@@ -204,7 +226,7 @@ window.localStorage.debug = &apos;*&apos;;</code>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

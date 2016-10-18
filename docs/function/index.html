@@ -34,6 +34,7 @@
     
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-reportChanges">reportChanges</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-shouldUpdate">shouldUpdate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-withDebugInfo">withDebugInfo</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-withPureRender">withPureRender</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getComponentName">getComponentName</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Change">Change</a></span></span></li>
@@ -71,6 +72,32 @@
     <td>
       
       <span class="since" data-ice="since">since 1.0.0</span>
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="function/index.html#static-function-withDebugInfo">withDebugInfo</a></span></span><span data-ice="signature">(Component: <span><a href="https://facebook.github.io/react/docs/component-api.html">React.Component</a></span>): <span><a href="https://facebook.github.io/react/docs/component-api.html">React.Component</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Enhances a component with change checks and console logs powered by debugjs</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      <span class="since" data-ice="since">since 2.0.0</span>
     </td>
   </tr>
 <tr data-ice="target">
@@ -246,6 +273,86 @@
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-withDebugInfo">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">withDebugInfo</span><span data-ice="signature">(Component: <span><a href="https://facebook.github.io/react/docs/component-api.html">React.Component</a></span>): <span><a href="https://facebook.github.io/react/docs/component-api.html">React.Component</a></span></span>
+    <span class="right-info">
+      
+      <span class="since" data-ice="since">since 2.0.0</span>
+      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber61">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {withDebugInfo} from &apos;<span><a href="file/src/index.js.html#lineNumber61">react-update-helper/src/index.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Enhances a component with change checks and console logs powered by debugjs</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">Component</td>
+      <td data-ice="type"><span><a href="https://facebook.github.io/react/docs/component-api.html">React.Component</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the component to be enhanced</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://facebook.github.io/react/docs/component-api.html">React.Component</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>the enhanced component</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">// Usage as a high order component
+class MyComponent extends React.Component {
+ render() { return &lt;p&gt;Hello World!&lt;/p&gt;; }
+}
+withDebugInfo(MyComponent); // Your enhanced component</code></pre>
+    </div>
+</div>
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="static-function-withPureRender">
     <span class="access" data-ice="access">public</span>
     
@@ -256,11 +363,11 @@
     <span class="right-info">
       
       <span class="since" data-ice="since">since 1.0.0</span>
-      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber61">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber93">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {withPureRender} from &apos;<span><a href="file/src/index.js.html#lineNumber61">react-update-helper/src/index.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {withPureRender} from &apos;<span><a href="file/src/index.js.html#lineNumber93">react-update-helper/src/index.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Encapsulates the shouldUpdate logic as a high order function</p>
@@ -504,7 +611,7 @@ withPureRender(MyComponent); // Your enhanced component</code></pre>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

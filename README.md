@@ -2,31 +2,31 @@
 
 [![Build]](https://travis-ci.org/mkautzmann/react-update-helper) [![SemVer]](http://semver.org/) [![Coverage]](https://coveralls.io/github/mkautzmann/react-update-helper?branch=master) [![Docs]](https://doc.esdoc.org/github.com/mkautzmann/react-update-helper/) [![License]](LICENSE)
 
-![Brief demo of react-update-helper debugging capabilities](https://cldup.com/TazTb8juee.gif)
+A [React](https://facebook.github.io/react/) set of helpers to debug and accelerate your component updates.
 
-A [React](https://facebook.github.io/react/) plugin to debug and accelerate your component updates.
-
-It's compatible with [debug](https://github.com/visionmedia/debug) and [Immutable](https://facebook.github.io/immutable-js/).
+It works with [debug](https://github.com/visionmedia/debug) and [Immutable](https://facebook.github.io/immutable-js/).
 
 ## Goal
 
-This react plugin basically does two things:
+This react kit is a set of two high order components ([HOCs](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.g1hqmwlh4)) that are useful for react app development:
 
-1. It helps you prevent useless component updates, thus improving your overall application performance.
+1. `withPureRender` is the first enhancer. It helps you prevent useless component updates (even when using deep Immutable.JS objects).
 
-2. It allows you to have a quick glimpse in why a component updated.
+2. `withDebugInfo` is the second one. It allows you to check why a component updated in your browser console.
 
-The idea combines thoughts of the works of the React team on [PureRenderMixin](https://facebook.github.io/react/docs/pure-render-mixin.html) and on a [post](https://medium.com/@tjholowaychuk/debugging-value-changes-in-react-s-shouldcomponentupdate-ae59b05c5371#.xig19l2nh) about React prop/state change debugging.
+The idea combines thoughts from [PureRenderMixin](https://facebook.github.io/react/docs/pure-render-mixin.html) and from a [blog post](https://medium.com/@tjholowaychuk/debugging-value-changes-in-react-s-shouldcomponentupdate-ae59b05c5371#.xig19l2nh) about React prop/state change debugging.
 
-## Why and when to use this?
+## Why and when to use these helpers?
 
-There are a few use cases:
+Here are a few common uses:
 
-- You want to use Immutable objects as your props or state values.
-- You use Redux with Immutable state objects
-- You want to debug props and state changes.
-- Pair the component update logging with react-perf-addon to help busting performance issues.
-- ...
+- You might want to use `withPureRender` when
+  - You want to use Immutable objects as your props or state values.
+  - You use Redux with Immutable state objects
+
+- You might want to use `withDebugInfo` when:
+  - You want to debug props and state changes.
+  - Pairing the component update logging with react-perf-addon to help busting performance issues.
 
 Still don't know if you need this? Take a look at the [Usage](#usage) section.
 
@@ -54,20 +54,21 @@ You are done, check the [Usage](#usage) section to know how to use it.
 
 Even if you are not using Immutable on your own, most modern build systems like `webpack v2` or `rollup` will isolate the tiny bit of code this module need to operate.
 
-As for [debug](https://github.com/visionmedia/debug), if you use it we don't duplicate code and if you don't it's a really tiny addition that allows you to turn console logging on/off and avoid the component update logging madness that happen in big apps.
+As for [debug](https://github.com/visionmedia/debug), it is optional and will only be [required](https://nodejs.org/api/modules.html) if you use `withDebugInfo`.
 
 ## <a href="#" id="usage"></a>Usage
 
-The package exposes two functions that you can use:
+The package exposes one function and two component enhancers that you can use:
 
-- `shouldUpdate`, the core update engine with Immutable support.
-- `withPureRender`, the easy plug-and-play function with debug support.
+- `shouldUpdate`, the core update function with Immutable support. You may use it directly in your `shouldComponentUpdate`. Or you can easily switch to the enhancer approach of `withPureRender`.
+- `withPureRender`, the easy plug-and-play enhancer HOC for any React component that will run `shouldUpdate` in every update attempt for you.
+- `withDebugInfo`, the debug function you may use in development to log out a nice component change feed in the browser console.
 
 #### withPureRender(Component)
 
-The easiest way to get all the goods is using `withPureRender`.
+The easiest way to get all the goods of automatic `shouldUpdate` is using `withPureRender`.
 
-You can use it as a [high order component](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.g1hqmwlh4):
+You can use it as a normal high order component as follows:
 
 ```javascript
 // Use react
@@ -87,7 +88,7 @@ class Greet extends React.Component {
 export default withPureRender(Greet);
 ```
 
-You can use it as a ES7 decorator:
+Or you can use it as a ES7 decorator if you support and like that way:
 
 ```javascript
 // Use react
@@ -108,7 +109,7 @@ class Greet extends React.Component {
 export default Greet;
 ```
 
-It works with [pure components](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions) too:
+It works with [pure functional components](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions) too:
 
 ```javascript
 // Use react
@@ -160,7 +161,27 @@ export default Greet;
 
 ### Debugging updates
 
-We use [debug](https://github.com/visionmedia/debug) to log component updates when in development environment and when debugging is enabled.
+Use `withDebugInfo` for that matter:
+
+```javascript
+// Use react
+import React from 'react';
+
+// Use withPureRender
+import { withDebugInfo } from 'react-update-helper';
+
+// Create the component
+class Greet extends React.Component {
+  render() {
+    return <div>Hello {this.props.greet}!</div>;
+  }
+}
+
+// Enhance the Greet with withDebugInfo and export it
+export default withDebugInfo(Greet);
+```
+
+We use [debug](https://github.com/visionmedia/debug) internally to log component updates when debugging is enabled.
 
 You can test this by enabling the namespace `ReactUpdateHelper` in `debug`.
 
@@ -178,15 +199,15 @@ window.localStorage.debug = '*';
 
 See more about debug in their [repository page](https://github.com/visionmedia/debug).
 
-#### Quick Tip: When using `immutable` objects use a custom formatter in the console
+#### Quick Tip: When debugging [Immutable](https://facebook.github.io/immutable-js/) objects use a custom formatter in the console
 
-This [custom formatter](https://github.com/andrewdavey/immutable-devtools) for Chrome Dev Tools makes `immutable` object debugging a breeze. It works perfectly with `react-update-helper`!
+This [custom formatter](https://github.com/andrewdavey/immutable-devtools) for Chrome Dev Tools makes `Immutable` object debugging a breeze. It works perfectly with `react-update-helper`!
 
-### Optimized in production
+### No debug in production
 
-As React does, we disable any debug code when performing a production build.
+As with React warnings, you should disable logs when running in a production environment.
 
-Just make sure you are building setting environment variable `NODE_ENV` to `production` value and performing dead code elimination.
+Just make sure you are conditionally using `withDebugInfo` with an environment variable of sorts (like setting `NODE_ENV` to `production`) and performing dead code elimination.
 
 The concerns are the same as if you were building React for production usage in the first place.
 
@@ -206,12 +227,7 @@ It can theorically work with [preact](https://github.com/developit/preact) when 
 
 ## Contributing
 
-This project is welcoming contributions of any kind! Here are some cool topics to get started:
-
-- [ ] Can we make this README better?
-- [ ] Improvements in the test suite.
-- [ ] Improvements in the documentation.
-- [ ] Updates in stale dependencies without breaking anything :smirk:
+This project is welcoming contributions of any kind!
 
 Please, before filing issues or sending PRs, read the [CONTRIBUTING](CONTRIBUTING.md) guide.
 
