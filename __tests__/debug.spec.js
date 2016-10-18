@@ -2,7 +2,7 @@ import { reportChanges } from '../src/debug';
 import { fakeComponent, newProps, newState } from './fixtures/fakeObjects';
 
 // cancel show console output
-window.console.log = (x) => x;
+window.console.log = x => x;
 
 describe('debug', () => {
   it('should return array with changes', () => {

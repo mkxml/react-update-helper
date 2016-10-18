@@ -8,7 +8,7 @@ import { shouldUpdate } from '../src/index';
 import { fakeComponent, newProps, newState } from './fixtures/fakeObjects';
 
 // cancel show console output
-window.console.log = (x) => x;
+window.console.log = x => x;
 
 // simulate production env
 process.env.NODE_ENV = 'production';
