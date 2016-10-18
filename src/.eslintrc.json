@@ -5,7 +5,9 @@
     "node": true
   },
   "rules": {
-    "global-require": "off"
+    "global-require": "off",
+    "import/prefer-default-export": "off",
+    "react/jsx-filename-extension": "off"
   },
   "extends": "airbnb",
   "plugins": [
