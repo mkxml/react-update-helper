@@ -1,5 +1,5 @@
 import React from 'react';
-import { withPureRender } from '../../src/index';
+import { withDebugInfo } from '../../src/index';
 
 class HighOrderComponent extends React.Component {
   constructor() {
@@ -21,4 +21,4 @@ HighOrderComponent.propTypes = {
   test: React.PropTypes.string,
 };
 
-export default withPureRender(HighOrderComponent);
+export default withDebugInfo(HighOrderComponent);

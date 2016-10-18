@@ -10,9 +10,6 @@ import { fakeComponent, newProps, newState } from './fixtures/fakeObjects';
 // cancel show console output
 window.console.log = x => x;
 
-// simulate production env
-process.env.NODE_ENV = 'production';
-
 describe('main functionality', () => {
   describe('shouldUpdate', () => {
     it('should return true when props change', () => {
@@ -194,19 +191,7 @@ describe('integration', () => {
     });
   });
   describe('react + debug', () => {
-    it('should not log changes when in production env', () => {
-      // spy on console log
-      sinon.spy(window.console, 'log');
-      const renderedComponent = shallow(<HighOrderComponent test="foo" />);
-      // change, causing update
-      renderedComponent.setProps({ test: 'bar' });
-      const called = window.console.log.called;
-      window.console.log.restore();
-      expect(called).to.eql(false);
-    });
-    it('should log changes in the console when not in production env', () => {
-      // simulate dev env
-      process.env.NODE_ENV = 'development';
+    it('should log changes when using withDebugInfo', () => {
       // spy on console log
       sinon.spy(window.console, 'log');
       const renderedComponent = shallow(<HighOrderComponent test="foo" />);

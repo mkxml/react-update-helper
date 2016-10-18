@@ -7,7 +7,8 @@
   "rules": {
     "global-require": "off",
     "import/prefer-default-export": "off",
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "react/no-multi-comp": "off"
   },
   "extends": "airbnb",
   "plugins": [
