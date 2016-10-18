@@ -7,7 +7,7 @@ class SmartComponent extends React.Component {
   }
 
   render() {
-    return <DumbComponent {...this.props} />;
+    return <DumbComponent prop1={this.props.prop1} prop2={this.props.prop2} />;
   }
 }
 
