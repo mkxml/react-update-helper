@@ -5,6 +5,10 @@
  * @return {string} - the component name
  * @since 1.0.0
  */
-export function getComponentName(ctx) {
+function getComponentName(ctx) {
   return ctx.constructor.displayName || ctx.displayName || ctx.name || ctx.constructor.name;
 }
+
+export default {
+  getComponentName,
+};
