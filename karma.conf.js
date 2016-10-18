@@ -21,20 +21,17 @@ module.exports = function karma(config) {
     reporters: ['mocha', 'coverage'],
     webpack: {
       devtool: 'inline-source-map',
-      resolve: {
-        extensions: ['', '.js', '.jsx']
-      },
       module: {
         preLoaders: [
           {
-            test: /\.jsx?$/,
+            test: /\.js$/,
             exclude: /(__tests__|node_modules)\//,
             loader: 'isparta-loader'
           }
         ],
         loaders: [
           {
-            test: /\.jsx?$/,
+            test: /\.js$/,
             loader: 'babel-loader',
             exclude: /(node_modules|lib)\//
           }
