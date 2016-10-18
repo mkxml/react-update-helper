@@ -1,11 +1,11 @@
 import React from 'react';
 import Immutable from 'immutable';
 import { shallow } from 'enzyme';
-import { shouldUpdate } from '../src/index';
-import { fakeComponent, newProps, newState } from './fixtures/fakeObjects';
 import TestComponent from './fixtures/TestComponent';
 import DecoratorComponent from './fixtures/DecoratorComponent';
 import HighOrderComponent from './fixtures/HighOrderComponent';
+import { shouldUpdate } from '../src/index';
+import { fakeComponent, newProps, newState } from './fixtures/fakeObjects';
 
 // cancel show console output
 window.console.log = (x) => x;

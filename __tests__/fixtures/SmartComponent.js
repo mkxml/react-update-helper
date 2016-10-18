@@ -1,5 +1,5 @@
-import DumbComponent from './DumbComponent';
 import React from 'react';
+import DumbComponent from './DumbComponent';
 
 class SmartComponent extends React.Component {
   componentDidMount() {

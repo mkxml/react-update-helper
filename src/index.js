@@ -1,7 +1,7 @@
 import React from 'react';
+import keys from 'lodash.keys';
 import { is } from 'immutable';
 import { getComponentName } from './util';
-import keys from 'lodash.keys';
 
 /**
  * @external {React.Component} https://facebook.github.io/react/docs/component-api.html
