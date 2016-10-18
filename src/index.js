@@ -26,7 +26,7 @@ export function shouldUpdate({ props, state }, nProps, nState) {
   }
   for (let i = 0, l = propsKeys.length; i < l; i += 1) {
     const key = propsKeys[i];
-    if (!nProps.hasOwnProperty(key)) {
+    if (!Object.prototype.hasOwnProperty.call(nProps, key)) {
       return true;
     }
     if (!is(props[key], nProps[key])) {
@@ -35,7 +35,7 @@ export function shouldUpdate({ props, state }, nProps, nState) {
   }
   for (let i = 0, l = stateKeys.length; i < l; i += 1) {
     const key = stateKeys[i];
-    if (!nState.hasOwnProperty(key)) {
+    if (!Object.prototype.hasOwnProperty.call(nState, key)) {
       return true;
     }
     if (!is(state[key], nState[key])) {
