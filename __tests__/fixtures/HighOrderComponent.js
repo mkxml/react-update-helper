@@ -8,7 +8,7 @@ class HighOrderComponent extends React.Component {
   }
 
   shouldComponentUpdate() {
-    this.updateCount++;
+    this.updateCount += 1;
     return true;
   }
 

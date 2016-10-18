@@ -9,7 +9,7 @@ class TestComponent extends React.Component {
 
   shouldComponentUpdate(newProps, newState) {
     const willUpdate = shouldUpdate(this, newProps, newState);
-    if (willUpdate) this.updateCount++;
+    if (willUpdate) this.updateCount += 1;
     return willUpdate;
   }
 

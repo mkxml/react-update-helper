@@ -24,7 +24,7 @@ export function shouldUpdate({ props, state }, nProps, nState) {
   if (propsKeys.length !== nPropsKeys.length || stateKeys.length !== nStateKeys.length) {
     return true;
   }
-  for (let i = 0, l = propsKeys.length; i < l; i++) {
+  for (let i = 0, l = propsKeys.length; i < l; i += 1) {
     const key = propsKeys[i];
     if (!nProps.hasOwnProperty(key)) {
       return true;
@@ -33,7 +33,7 @@ export function shouldUpdate({ props, state }, nProps, nState) {
       return true;
     }
   }
-  for (let i = 0, l = stateKeys.length; i < l; i++) {
+  for (let i = 0, l = stateKeys.length; i < l; i += 1) {
     const key = stateKeys[i];
     if (!nState.hasOwnProperty(key)) {
       return true;
