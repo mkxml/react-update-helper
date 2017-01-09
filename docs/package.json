@@ -1,6 +1,6 @@
 {
   "name": "react-update-helper",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Precise React re-renders with debug and immutable support",
   "scripts": {
     "lint": "eslint karma.conf.js tests.webpack.js src __tests__",
@@ -14,7 +14,7 @@
   },
   "author": {
     "name": "Matheus Kautzmann",
-    "email": "kautzmann5@gmail.com"
+    "email": "mkvchain@gmail.com"
   },
   "license": "MIT",
   "keywords": [
@@ -28,10 +28,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mkautzmann/react-update-helper"
+    "url": "https://github.com/mkxml/react-update-helper"
   },
   "bugs": {
-    "url": "https://github.com/mkautzmann/react-update-helper/issues"
+    "url": "https://github.com/mkxml/react-update-helper/issues"
   },
   "main": "lib/index.js",
   "devDependencies": {

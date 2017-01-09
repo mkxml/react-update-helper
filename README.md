@@ -1,6 +1,6 @@
 # react-update-helper
 
-[![Build]](https://travis-ci.org/mkautzmann/react-update-helper) [![SemVer]](http://semver.org/) [![Coverage]](https://coveralls.io/github/mkautzmann/react-update-helper?branch=master) [![Docs]](https://doc.esdoc.org/github.com/mkautzmann/react-update-helper/) [![License]](LICENSE)
+[![Build]](https://travis-ci.org/mkxml/react-update-helper) [![SemVer]](http://semver.org/) [![Coverage]](https://coveralls.io/github/mkxml/react-update-helper?branch=master) [![Docs]](https://doc.esdoc.org/github.com/mkxml/react-update-helper/) [![License]](LICENSE)
 
 A [React](https://facebook.github.io/react/) set of helpers to debug and accelerate your component updates.
 
@@ -215,7 +215,7 @@ If you use [Webpack](https://webpack.github.io/), [here](http://moduscreate.com/
 
 #### Whole documentation
 
-See the whole docs in the `docs` folder of this repo or [directly online](https://doc.esdoc.org/github.com/mkautzmann/react-update-helper/).
+See the whole docs in the `docs` folder of this repo or [directly online](https://doc.esdoc.org/github.com/mkxml/react-update-helper/).
 
 ## Compatibility
 
@@ -235,8 +235,8 @@ Please, before filing issues or sending PRs, read the [CONTRIBUTING](CONTRIBUTIN
 
 [MIT](LICENSE)
 
-[Build]: https://img.shields.io/travis/mkautzmann/react-update-helper.svg
+[Build]: https://img.shields.io/travis/mkxml/react-update-helper.svg
 [SemVer]: https://img.shields.io/:semver-%E2%9C%93-brightgreen.svg
-[Coverage]: https://img.shields.io/coveralls/mkautzmann/react-update-helper/master.svg
-[Docs]: https://doc.esdoc.org/github.com/mkautzmann/react-update-helper/badge.svg
+[Coverage]: https://img.shields.io/coveralls/mkxml/react-update-helper/master.svg
+[Docs]: https://doc.esdoc.org/github.com/mkxml/react-update-helper/badge.svg
 [License]: https://img.shields.io/npm/l/react-update-helper.svg
