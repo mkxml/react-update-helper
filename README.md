@@ -1,6 +1,6 @@
 # react-update-helper
 
-[![Build]](https://travis-ci.org/mkxml/react-update-helper) [![SemVer]](http://semver.org/) [![Coverage]](https://coveralls.io/github/mkxml/react-update-helper?branch=master) [![Docs]](https://doc.esdoc.org/github.com/mkxml/react-update-helper/) [![License]](LICENSE)
+[![Build]](https://travis-ci.org/mkxml/react-update-helper) [![SemVer]](http://semver.org/) [![Coverage]](https://coveralls.io/github/mkxml/react-update-helper?branch=master) [![License]](LICENSE)
 
 A [React](https://facebook.github.io/react/) set of helpers to debug and accelerate your component updates.
 
