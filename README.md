@@ -1,5 +1,7 @@
 # react-update-helper
 
+**⚠️ DEPRECATED: This project is no longer useful. Please check alternatives like [React's Pure Component](https://reactjs.org/docs/react-api.html#reactpurecomponent) and [React's Dev Tools](https://github.com/facebook/react-devtools)**
+
 [![Build]](https://travis-ci.org/mkxml/react-update-helper) [![SemVer]](http://semver.org/) [![Coverage]](https://coveralls.io/github/mkxml/react-update-helper?branch=master) [![License]](LICENSE)
 
 A [React](https://facebook.github.io/react/) set of helpers to debug and accelerate your component updates.
